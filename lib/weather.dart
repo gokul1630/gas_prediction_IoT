@@ -63,7 +63,7 @@ class _WeatherPredictionState extends State<WeatherPrediction> {
       showNotifications("Warning Smoke Level goes high");
       vibrateDevice();
       isNotify = true;
-    } else if (co >= 20000) {
+    } else if (co >= 200000) {
       showNotifications("Warning Co Level goes high");
       vibrateDevice();
       isNotify = true;
@@ -152,24 +152,14 @@ class _WeatherPredictionState extends State<WeatherPrediction> {
                     height: boxSide,
                     width: boxSide,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: Center(
-                      child: RichText(
-                        text: TextSpan(
-                            text:
-                                "Click Here To Launch Location in google Maps",
-                            style: TextStyle(
-                                fontSize: boxSide * 0.55,
-                                color: Colors.black,
-                                decoration: TextDecoration.underline),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                launchUrl(
-                                    "https://maps.google.com/?q=$lat,$lon");
-                              }),
-                        textAlign: TextAlign.center,
-                      ),
+                  Container(
+                    height: boxSide * 2.5,
+                    width: boxSide * 2.5,
+                    child: MaterialButton(
+                      child: Image.asset('images/map.png'),
+                      onPressed: () {
+                        launchUrl("https://maps.google.com/?q=$lat,$lon");
+                      },
                     ),
                   ),
                   SizedBox(
